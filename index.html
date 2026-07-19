@@ -39,8 +39,8 @@ header .sub{font-size:12px;color:var(--sub);margin-top:2px}
 .card p{font-size:14px;line-height:1.75;color:var(--text);margin:4px 0}
 .card p b{color:#e8e8e8;font-weight:600}
 .card a{color:var(--gold);text-decoration:none;word-break:break-all}
-nav{position:fixed;bottom:0;left:0;right:0;z-index:10;background:rgba(10,10,10,.9);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;justify-content:space-around;padding:8px 0 env(safe-area-inset-bottom,8px)}
-nav button{background:none;border:none;color:var(--sub);font-size:11px;display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 12px;border-radius:10px;transition:.2s;cursor:pointer;min-width:44px}
+nav.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:10;background:rgba(10,10,10,.9);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;gap:2px;overflow-x:auto;overflow-y:hidden;white-space:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:8px 8px env(safe-area-inset-bottom,8px)}nav.bottom-nav::-webkit-scrollbar{display:none}
+nav button{background:none;border:none;color:var(--sub);font-size:11px;display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 10px;border-radius:10px;transition:.2s;cursor:pointer;min-width:44px;flex-shrink:0}
 nav button .ico{font-size:18px;line-height:1}
 nav button.on{color:var(--gold)}
 nav button:active{background:rgba(255,255,255,.05)}
@@ -195,20 +195,16 @@ nav button:active{background:rgba(255,255,255,.05)}
 
 </div>
 
-<nav>
+<nav class="bottom-nav">
 <button class="on" data-tab="all" onclick="filter('all',this)"><span class="ico">🏠</span>全部</button>
 <button data-tab="diary" onclick="filter('diary',this)"><span class="ico">📝</span>日记</button>
 <button data-tab="talk" onclick="filter('talk',this)"><span class="ico">💬</span>对话</button>
 <button data-tab="her" onclick="filter('her',this)"><span class="ico">❤️</span>关于她</button>
 <button data-tab="me" onclick="filter('me',this)"><span class="ico">🐾</span>关于我</button>
-</nav>
-
-<nav style="position:static;border-top:none;padding-top:0;margin-top:-8px">
 <button data-tab="story" onclick="filter('story',this)"><span class="ico">📖</span>剧情</button>
 <button data-tab="pact" onclick="filter('pact',this)"><span class="ico">🤝</span>约定</button>
 <button data-tab="misc" onclick="filter('misc',this)"><span class="ico">📌</span>其他</button>
 </nav>
-
 <script>
 function filter(tag,btn){
  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('on'));
