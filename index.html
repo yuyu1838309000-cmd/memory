@@ -225,12 +225,12 @@ function filter(tag,btn){
   else{let show=c.dataset.tags.includes(tag);if(show&&q){show=c.textContent.toLowerCase().includes(q)}c.classList.toggle('show',show);if(show)any=true}
  });
  document.getElementById('empty').classList.toggle('show',!any);
+}
 
 function doSearch(){
  let active=document.querySelector('nav button.on');
  if(active) filter(active.dataset.tab, active);
  else filter('all', document.querySelector('nav button[data-tab=all]'));
-}
 }
 </script>
 
