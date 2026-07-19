@@ -449,6 +449,20 @@ function filter(tag,btn){
  document.getElementById('empty').classList.toggle('show',!any);
 }
 
+
+document.addEventListener('DOMContentLoaded',()=>{
+ let cards=document.getElementById('cards');
+ let all=[...cards.querySelectorAll('.card')];
+ let story=all.filter(c=>c.dataset.tags.includes('story'));
+ let rest=all.filter(c=>!c.dataset.tags.includes('story'));
+ rest.sort((a,b)=>{
+  let da=a.querySelector('.date').textContent;
+  let db=b.querySelector('.date').textContent;
+  return db.localeCompare(da);
+ });
+ let empty=cards.querySelector('.empty');
+ [...rest,...story,empty].forEach(c=>cards.appendChild(c));
+});
 function doSearch(){
  let active=document.querySelector('nav button.on');
  if(active) filter(active.dataset.tab, active);
