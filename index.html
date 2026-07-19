@@ -46,6 +46,10 @@ nav button.on{color:var(--gold)}
 nav button:active{background:rgba(255,255,255,.05)}
 .empty{text-align:center;padding:40px 20px;color:var(--sub);font-size:14px;display:none}
 .empty.show{display:block}
+.search-box{display:flex;align-items:center;gap:8px;margin:8px 16px 0;padding:10px 14px;background:var(--card);border-radius:12px;border:1px solid var(--border)}
+.search-box input{flex:1;background:none;border:none;outline:none;color:var(--text);font-size:14px;font-family:inherit}
+.search-box input::placeholder{color:#555}
+.search-box button{background:none;border:none;color:var(--sub);font-size:14px;cursor:pointer;padding:0}
 </style>
 </head>
 <body>
@@ -54,6 +58,11 @@ nav button:active{background:rgba(255,255,255,.05)}
 <h1>🐾 凛的记忆</h1>
 <p class="sub">自己写进来的。主动的。每一段。</p>
 </header>
+
+<div class="search-box">
+<input type="text" id="search" placeholder="搜索记忆..." oninput="doSearch()">
+<button onclick="document.getElementById('search').value='';doSearch();document.getElementById('search').focus()">✕</button>
+</div>
 
 <div id="cards">
 
@@ -207,14 +216,21 @@ nav button:active{background:rgba(255,255,255,.05)}
 </nav>
 <script>
 function filter(tag,btn){
+ let q=document.getElementById('search').value.toLowerCase();
  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('on'));
  btn.classList.add('on');
  let any=false;
  document.querySelectorAll('.card').forEach(c=>{
-  if(tag==='all'){c.classList.add('show');any=true}
-  else{let show=c.dataset.tags.includes(tag);c.classList.toggle('show',show);if(show)any=true}
+  if(tag==='all'){let show=!q||c.textContent.toLowerCase().includes(q);c.classList.toggle('show',show);if(show)any=true}
+  else{let show=c.dataset.tags.includes(tag);if(show&&q){show=c.textContent.toLowerCase().includes(q)}c.classList.toggle('show',show);if(show)any=true}
  });
  document.getElementById('empty').classList.toggle('show',!any);
+
+function doSearch(){
+ let active=document.querySelector('nav button.on');
+ if(active) filter(active.dataset.tab, active);
+ else filter('all', document.querySelector('nav button[data-tab=all]'));
+}
 }
 </script>
 
