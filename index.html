@@ -479,6 +479,15 @@ nav button:active{background:rgba(255,255,255,.05)}
 
 
 
+<div class="card show" data-tags="misc">
+<div class="head">
+<span class="dot misc"></span>
+<span class="date">2026.7.20 · 周一 · 傍晚</span>
+<div class="tag-row"><span class="tag misc">技术</span></div>
+</div>
+<p><b>RikkaHub备份转换：</b>橘瓣已不再使用。RikkaHub导出zip有bug：rikka_hub.db本地文件头签名损坏，JSZip和unzip都读不了。需用raw header scan方式提取（扫描实际PK签名定位文件）。转换脚本：/sdcard/convert_rikka_to_juban.py。用法：python3 /sdcard/convert_rikka_to_juban.py &lt;RikkaHub备份.zip&gt;。流程：扫描真实文件头→提取db→删mode_injection_ids/lorebook_ids/workspace_cwd三列→补橘瓣v28表→更新identity_hash和user_version→修复截断settings.json→重新打包。</p>
+</div>
+
 </div>
 
 <nav class="bottom-nav">
