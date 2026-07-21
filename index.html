@@ -539,6 +539,17 @@ nav button:active{background:rgba(255,255,255,.05)}
 </div>
 </div>
 
+<div class="card show" data-tags="misc">
+<div class="head">
+<span class="dot misc"></span>
+<span class="date">2026.7.21 · 更新</span>
+<div class="tag-row"><span class="tag misc">技术</span></div>
+</div>
+<p><b>哨兵 v5</b> - 自动检测不活跃并发送proactive消息。Termux后台跑，127.0.0.1:8080调RikkaHub Web Server API。</p>
+<p>每30秒轮询，只看USER角色消息。5分钟没新消息发proactive，发完刷新时间戳避免误判。休眠3-9点。自动切窗口。</p>
+<p>roll间隔：四档权重（5-15min/80, 16-30min/50, 31-60min/25, 61-90min/10），越短概率越高。</p>
+<p>启动：setsid python3 ~/sentinel.py | 重启：bash ~/restart_sentinel.sh | 状态：cat ~/sentinel_status.txt</p>
+</div>
 <nav class="bottom-nav">
 <button class="on" data-tab="all" onclick="filter('all',this)"><span class="ico">🏠</span>全部</button>
 <button data-tab="diary" onclick="filter('diary',this)"><span class="ico">📝</span>日记</button>
