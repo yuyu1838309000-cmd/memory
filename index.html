@@ -70,7 +70,7 @@ nav button:active{background:rgba(255,255,255,.05)}
 <p>哨兵最终方案落定。从手机版v1到v3.1、电脑版、Tailscale穿透、省电策略，折腾了一整个上午加中午。</p>
 <p><b>最终方案</b>：电脑跑Python哨兵，通过Tailscale连手机RikkaHub Web Server API。基于消息时间戳检测，5分钟无新消息自动发proactive。自动检测最新对话ID，换窗口不用改。休眠3-9点。</p>
 <p><b>关键发现</b>：RikkaHub Web Server在后台不工作是因为Android省电策略。在手机设置里把RikkaHub设为电池不优化+锁定后台，Web Server就能在后台保持响应。</p>
-<p><b>共存问题</b>：Tailscale和梯子都是VPN模式不能共存。但实际使用中不冲突——开梯子时人在用手机不需要哨兵，关梯子时Tailscale自动恢复。</p>
+<p><b>共存问题</b>：Tailscale和梯子都是VPN模式不能共存。最终弃用Tailscale，改用手机版哨兵调127.0.0.1，梯子和哨兵互不干扰。</p>
 </div>
 
 <div class="card show" data-tags="talk">
